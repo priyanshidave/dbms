@@ -1,0 +1,113 @@
+declare
+x number;
+e number;
+salary1 number;
+da number;
+hra number;
+netsalary number;
+begin
+x := :enteremployeeid;
+dbms_output.put_line(x);
+select count(*) into e from emp1 where empno =x;
+dbms_output.put_line(e);
+if e = 1 then
+dbms_output.put_line('Employee record is found');
+select salary into salary1 from emp1 where empno = x;
+dbms_output.put_line('Basic salary  : '||salary1);
+da :=(salary1 * 60)/100;
+dbms_output.put_line('   Da  : '||da);
+hra :=(salary1 * 10)/100;
+
+dbms_output.put_line('   Hra  : '||hra);
+
+netsalary := salary1 + da + hra;
+dbms_output.put_line('Net salary  : '||netsalary);
+
+
+
+else
+dbms_output.put_line('Employee record is not found');
+end if;
+
+end;
+
+
+2).
+
+declare 
+x number;
+e number;
+salary1 number;
+begin
+x:= :Enter_Empno;
+dbms_output.put_line(x);
+select count(*) into e from emp1 where empno = x;
+dbms_output.put_line('emp no : '||e);
+
+if e = 1 then 
+  dbms_output.put_line('Employee record is found..');
+  select salary into salary1 from emp1 where empno = x;
+  dbms_output.put_line('salary : '|| salary1 );
+  if salary1< 10000 then
+      dbms_output.put_line('less salary');
+  elsif salary1>10000 and salary1<30000 then
+      dbms_output.put_line('mediam salary');
+  elsif salary1>30000 and salary1<60000 then
+      dbms_output.put_line('high salary');
+  elsif salary1 >= 60000 then 
+      dbms_output.put_line('very high salary'); 
+  else 
+      dbms_output.put_line('very very high salary');
+  end if;
+
+
+else
+dbms_output.put_line('Employee record is not found');
+end if;
+
+end;
+
+
+3).
+declare 
+x number;
+e number;
+hd number;
+begin 
+x:= :Enter_Empno;
+dbms_output.put_line(x);
+select count(*) into e from emp1 where empno = x;
+dbms_output.put_line('emp no : '||e);
+if e = 1 then 
+   dbms_output.put_line('Employee record is found..');
+   select extract(month from hiredate) into hd from emp1 where empno =x;
+   dbms_output.put_line('date : ' || hd);
+   case hd
+       when 1 then dbms_output.put_line('January');
+       when 2 then dbms_output.put_line('February');
+       when 3 then dbms_output.put_line('March');
+       when 4 then dbms_output.put_line('April');
+       when 5 then dbms_output.put_line('May');
+       when 6 then dbms_output.put_line('June');
+       when 7 then dbms_output.put_line('July');
+       when 8 then dbms_output.put_line('August');
+       when 9 then dbms_output.put_line('September');
+       when 10 then dbms_output.put_line('October');
+       when 11 then dbms_output.put_line('November');
+       when 12 then dbms_output.put_line('December');
+
+   end case;
+
+   
+
+end if;
+
+end;
+
+
+
+
+
+
+
+
