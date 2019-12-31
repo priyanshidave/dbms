@@ -1,0 +1,24 @@
+CREATE  TRIGGER  emp_alert
+
+ AFTER INSERT ON employee
+
+BEGIN
+
+DBMS_OUTPUT.PUT_LINE ('New employees are about to be added'); 
+END;
+
+2)
+CREATE  OR REPLACE   TRIGGER   emp_salary
+
+ BEFORE UPDATE ON emp
+for each row when (new.salary >=2000)
+
+BEGIN
+dbms_output.put_line('new salary' || :NEW.salary);
+
+ 
+END;
+3)
+create table  emp1( empno int,name varchar2(20),salary int,deptno int,designation varchar2 (20)); 
+create table dept(deptno int,name varchar2 (20),noofemployee varchar2 (20),Total_salary int) ;
+insert into emp1 values(1,'xyz',45000,1001,'salasperson');
